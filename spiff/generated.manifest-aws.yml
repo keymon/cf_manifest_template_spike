@@ -1,0 +1,36 @@
+networks:
+- name: private
+  subnets:
+  - cloud_properties:
+      security_groups:
+      - ${bosh_security_group}
+      subnet: ${aws_subnet_id}
+    dns:
+    - 10.0.0.2
+    gateway: 10.0.0.1
+    range: 10.0.0.0/24
+  type: manual
+- name: public
+  type: vip
+releases:
+- name: bosh-aws-cpi
+  sha1: c7ce03393ebedd87a860dc609758ddb9654360fa
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
+- sha1: 3380b55948abe4c437dee97f67d2d8df4eec3fc1
+  url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3012
+- name: bosh
+  sha1: a0260b8cbcd3fba3a2885ddaa7040b8c4cb22a49
+  url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=190
+resource_pools:
+- cloud_properties:
+    availability_zone: eu-west-1a
+    ephemeral_disk:
+      size: "32_000"
+      type: gp2
+    instance_type: t2.medium
+  name: bosh_vms
+  network: private
+  stemcell:
+    sha1: 3380b55948abe4c437dee97f67d2d8df4eec3fc1
+    url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3012
+

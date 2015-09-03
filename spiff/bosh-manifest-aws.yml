@@ -1,0 +1,31 @@
+---
+terraform_outputs: ((merge))
+
+releases:
+  - name: bosh-aws-cpi
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-aws-cpi-release?v=28
+    sha1: c7ce03393ebedd87a860dc609758ddb9654360fa
+
+networks:
+  - name: private
+    type: manual
+    subnets:
+      - range: 10.0.0.0/24
+        gateway: 10.0.0.1
+        dns: [10.0.0.2]
+        cloud_properties:
+          subnet: (( terraform_outputs.aws.microbosh_subnet_name ))
+          security_groups: (( terraform_outputs.aws.microbosh_security_groups ))
+  - name: public
+    type: vip
+
+iaas_specific:
+  stemcell:
+    url: https://bosh.io/d/stemcells/bosh-aws-xen-hvm-ubuntu-trusty-go_agent?v=3012
+    sha1: 3380b55948abe4c437dee97f67d2d8df4eec3fc1
+  bosh_vm:
+    cloud_properties:
+      instance_type: t2.medium
+      availability_zone: eu-west-1a
+      ephemeral_disk: {size: '32_000', type: gp2}
+

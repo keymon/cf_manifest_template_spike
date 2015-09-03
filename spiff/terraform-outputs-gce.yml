@@ -1,0 +1,4 @@
+---
+terraform_outputs:
+  gce:
+    microbosh_network_name: ${gce_microbosh_net}

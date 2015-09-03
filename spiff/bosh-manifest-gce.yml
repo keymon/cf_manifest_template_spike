@@ -1,0 +1,29 @@
+---
+terraform_outputs: ((merge))
+
+releases:
+  - name: bosh-google-cpi
+    url: http://storage.googleapis.com/bosh-stemcells/bosh-google-cpi-5.tgz
+    sha1: c5de3053f233e6ef42c2a4228fa94179d955cc84
+
+networks:
+  - name: private
+    type: dynamic
+    cloud_properties:
+      network_name: (( terraform_outputs.gce.microbosh_network_name ))
+      tags:
+        - bosh
+        - bastion
+  - name: public
+    type: vip
+
+iaas_specific:
+  stemcell:
+    url: http://storage.googleapis.com/bosh-stemcells/light-bosh-stemcell-2968-google-kvm-ubuntu-trusty-go_agent.tgz
+    sha1: ce5a64c3ecef4fd3e6bd633260dfaa7de76540eb
+  bosh_vm:
+    cloud_properties:
+      machine_type: n1-standard-2
+      root_disk_type: pd-standard
+      root_disk_size_gb: 32
+

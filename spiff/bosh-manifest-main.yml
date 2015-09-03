@@ -1,0 +1,9 @@
+#
+# Main manifest file. I just merges the latest necessary elements
+#
+---
+releases: (( merge ))
+
+networks: (( merge ))
+
+resource_pools: (( merge ))
