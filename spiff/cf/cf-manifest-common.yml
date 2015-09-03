@@ -1,4 +1,6 @@
 ---
+terraform_outputs: (( merge ))
+
 name: CloudFoundry
 
 director_uuid: (( merge || "BOSH_UUID" ))
@@ -12,4 +14,11 @@ resource_pools: (( merge ))
 
 jobs: (( merge ))
 
-properties: (( merge ))
+properties:
+  <<: (( merge ))
+  domain: (( terraform_outputs.env "-cf.paas.alphagov.co.uk" ))
+  system_domain: (( terraform_outputs.env "-cf.paas.alphagov.co.uk" ))
+  system_domain_organization: 'admin'
+  app_domains:
+    - (( terraform_outputs.env "-cf.paas.alphagov.co.uk" ))
+
