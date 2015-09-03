@@ -45,4 +45,3 @@ disk_pools:
       type: pd-ssd
 
 
-properties: {}
