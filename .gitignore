@@ -1,1 +1,7 @@
 generated.*
+director_uuid.yml
+terraform-outputs-aws.yml
+terraform-outputs-gce.yml
+terraform.tfstate
+terraform.tfstate.backup
+

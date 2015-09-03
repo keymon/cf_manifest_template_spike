@@ -3,7 +3,7 @@ terraform_outputs:
   aws:
     microbosh_subnet_name: ${aws_subnet_id}
     microbosh_security_groups:
-      - ${bosh_security_group}
+    - ${bosh_security_group}
     region: ${aws_region}
     default_security_groups:
     - ${default_security_group}
