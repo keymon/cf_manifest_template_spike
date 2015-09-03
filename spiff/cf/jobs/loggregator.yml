@@ -1,4 +1,6 @@
 ---
+job_address: (( merge )) # Just an include
+
 jobs:
   - <<: (( merge )) # Pull other jobs from previous stubs
   - name: loggregator
@@ -10,3 +12,8 @@ jobs:
       - name: default
         default: [dns, gateway]
 
+properties:
+  <<: (( merge ))
+  syslog_aggregator:
+    address: (( job_address.syslog_aggregator.address ))
+    port: 54321

@@ -1,4 +1,7 @@
 ---
+job_address: (( merge )) # Simple include
+secrets: (( merge )) # Simple include
+
 jobs:
   - <<: (( merge )) # Pull other jobs from previous stubs
   - name: nats
@@ -10,3 +13,13 @@ jobs:
     networks:
       - name: default
         default: [dns, gateway]
+
+properties:
+  <<: (( merge ))
+  nats:
+    user: nats
+    password: (( secrets.passwords.cf.nats ))
+    address: (( job_address.nats.address ))
+    port: 4222
+    machines:
+      - (( job_address.nats.address ))
