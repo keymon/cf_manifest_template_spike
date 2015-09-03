@@ -26,4 +26,7 @@ iaas_specific:
         machine_type: n1-standard-2
         root_disk_type: pd-standard
         root_disk_size_gb: 32
+  disks:
+    cloud_properties:
+      type: pd-standard
 

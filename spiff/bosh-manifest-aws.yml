@@ -28,4 +28,7 @@ iaas_specific:
         instance_type: t2.medium
         availability_zone: eu-west-1a
         ephemeral_disk: {size: '32_000', type: gp2}
+  disks:
+    cloud_properties:
+      type: gp2
 

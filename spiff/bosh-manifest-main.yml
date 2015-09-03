@@ -7,3 +7,5 @@ releases: (( merge ))
 networks: (( merge ))
 
 resource_pools: (( merge ))
+
+disk_pools: (( merge ))

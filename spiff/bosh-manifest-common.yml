@@ -20,9 +20,7 @@ resource_pools:
 disk_pools:
   - name: disks
     disk_size: 32_768
-    cloud_properties:
-      type: pd-standard
-
+    cloud_properties: (( iaas_specific.disks.cloud_properties ))
 
 jobs:
   - name: bosh
