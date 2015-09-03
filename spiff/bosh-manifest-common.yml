@@ -128,7 +128,7 @@ jobs:
              password: agent
 
       registry:
-        host: ${gce_static_ip}
+        host: (( terraform_outputs.bosh.microbosh_endpoint_ip ))
         username: registry
         password: registry
 
