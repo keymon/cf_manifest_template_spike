@@ -1,5 +1,6 @@
 ---
 terraform_outputs: ((merge))
+secrets: (( merge ))
 
 networks:
   - name: private
@@ -13,6 +14,18 @@ networks:
           security_groups: (( terraform_outputs.aws.microbosh_security_groups ))
   - name: public
     type: vip
+
+properties:
+  aws: &aws
+    access_key_id: (( secrets.aws.access_key_id ))
+    secret_access_key: (( secrets.aws.secret_access_key ))
+    default_key_name: (( secrets.aws.ssh_key_name ))
+    default_security_groups: (( terraform_outputs.aws.default_security_groups ))
+    region: (( terraform_outputs.aws.region ))
+
+cloud_provider:
+  properties:
+    aws: *aws
 
 iaas_specific:
   bosh:

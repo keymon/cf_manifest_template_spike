@@ -1,5 +1,6 @@
 ---
 terraform_outputs: ((merge))
+secrets: (( merge ))
 
 networks:
   - name: private
@@ -11,6 +12,17 @@ networks:
         - bastion
   - name: public
     type: vip
+
+properties:
+  google: &google_properties
+    project: (( secrets.gce.project ))
+    json_key: (( secrets.gce.json_key ))
+    default_zone: (( terraform_outputs.gce.default_zone ))
+
+cloud_provider:
+  properties:
+    google: *google_properties
+
 
 iaas_specific:
   bosh:

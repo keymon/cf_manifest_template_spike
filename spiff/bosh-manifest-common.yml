@@ -112,12 +112,6 @@ jobs:
 
       ntp: &ntp (( iaas_specific.ntp_servers ))
 
-      google: &google_properties
-        project: ${gce_project_id}
-        json_key: |
-                    ACCOUNT_JSON
-        default_zone: ${gce_default_zone}
-
       agent:
         mbus: (( "nats://nats:" secrets.passwords.bosh.nats "@" terraform_outputs.bosh.microbosh_endpoint_ip ":4222" ))
         ntp: *ntp
@@ -131,6 +125,8 @@ jobs:
         host: (( terraform_outputs.bosh.microbosh_endpoint_ip ))
         username: registry
         password: registry
+
+properties: (( merge ))
 
 cloud_provider:
   template:

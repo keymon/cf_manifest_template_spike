@@ -11,3 +11,7 @@ resource_pools: (( merge ))
 disk_pools: (( merge ))
 
 jobs: (( merge ))
+
+properties: (( merge ))
+
+cloud_provider: (( merge ))
