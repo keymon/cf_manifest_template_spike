@@ -40,6 +40,7 @@ cf_spiff_gce: director_uuid terraform_outputs
 		cf-manifest-common.yml \
 		jobs/*.yml \
 		cf-manifest-gce.yml \
+		cf-manifest-shared.yml \
 		terraform-outputs-gce.yml \
 		secrets.yml \
 		director_uuid.yml \

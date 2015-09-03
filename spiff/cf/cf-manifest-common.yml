@@ -1,7 +1,8 @@
 ---
 terraform_outputs: (( merge ))
+shared_properties: (( merge ))
 
-name: CloudFoundry
+name: (( shared_properties.deployment_name ))
 
 director_uuid: (( merge || "BOSH_UUID" ))
 

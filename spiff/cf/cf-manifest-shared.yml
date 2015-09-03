@@ -1,0 +1,7 @@
+#
+# Variables used by other stubs that are shared by all the platforms
+#
+---
+terraform_outputs: (( merge ))
+shared_properties:
+  deployment_name: (( terraform_outputs.env "-cf" ))
