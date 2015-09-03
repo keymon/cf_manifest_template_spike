@@ -1,5 +1,6 @@
 ---
 terraform_outputs:
+  env: ${env}
   gce:
     microbosh_network_name: ${gce_network_name}
     network_name: ${gce_network_name}

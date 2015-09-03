@@ -1,5 +1,6 @@
 ---
 terraform_outputs:
+  env: ${env}
   aws:
     microbosh_subnet_name: ${aws_subnet_id}
     microbosh_security_groups:
