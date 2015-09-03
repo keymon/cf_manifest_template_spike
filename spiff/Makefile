@@ -51,7 +51,9 @@ cf_spiff_aws: director_uuid terraform_outputs
 	spiff merge \
 		cf-manifest-main.yml \
 		cf-manifest-common.yml \
+		jobs/*.yml \
 		cf-manifest-aws.yml \
+		cf-manifest-shared.yml \
 		terraform-outputs-aws.yml \
 		secrets.yml \
 		director_uuid.yml \
