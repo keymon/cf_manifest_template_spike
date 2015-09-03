@@ -24,8 +24,7 @@ resource "template_file" "terraform_outputs_gce_yml" {
     filename = "${path.module}/terraform-outputs-gce.yml.tpl"
 
     vars {
-        gce_microbosh_net       = "${var.env}-microbosh-net"
-        gce_cf_net              = "${var.env}-cf-net"
+        gce_network_name        = "${var.env}-cf-net"
         gce_default_zone        = "europe-gce-zone"
         bastion_public_ip       = "195.11.22.31"
         bastion_ssh_user        = "ubuntu"

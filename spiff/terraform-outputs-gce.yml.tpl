@@ -1,10 +1,9 @@
 ---
 terraform_outputs:
   gce:
-    microbosh_network_name: ${gce_microbosh_net}
-    network_name: ${gce_cf_net}
-    default_zone: ${gce_default_zone}
+    microbosh_network_name: ${gce_network_name}
     network_name: ${gce_network_name}
+    default_zone: ${gce_default_zone}
   bosh:
     private_static_ips:
     - ${bosh_private_ip}

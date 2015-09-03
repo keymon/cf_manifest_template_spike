@@ -1,6 +1,7 @@
 all: bosh_spiff cf_spiff
 
 terraform_outputs:
+	touch terraform-outputs-aws.yml terraform-outputs-gce.yml
 	terraform apply -var env=myenv
 
 bosh_spiff: bosh_spiff_gce bosh_spiff_aws
