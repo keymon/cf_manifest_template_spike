@@ -23,3 +23,8 @@ properties:
   app_domains:
     - (( terraform_outputs.env "-cf.paas.alphagov.co.uk" ))
 
+  haproxy: {}
+
+  networks:
+    apps: default
+
