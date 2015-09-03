@@ -4,7 +4,7 @@ name: bosh
 iaas_specific: (( merge ))
 
 releases:
-  - <<: (( merge ))
+  - (( iaas_specific.bosh.cpi_release ))
   - name: bosh
     url: https://bosh.io/d/github.com/cloudfoundry/bosh?v=190
     sha1: a0260b8cbcd3fba3a2885ddaa7040b8c4cb22a49
@@ -14,8 +14,8 @@ networks: (( merge ))
 resource_pools:
   - name: bosh_vms
     network: private
-    stemcell: (( iaas_specific.stemcell ))
-    cloud_properties: (( iaas_specific.bosh_vm.cloud_properties ))
+    stemcell: (( iaas_specific.bosh.stemcell ))
+    cloud_properties: (( iaas_specific.bosh.vm.cloud_properties ))
 
 disk_pools:
   - name: disks
