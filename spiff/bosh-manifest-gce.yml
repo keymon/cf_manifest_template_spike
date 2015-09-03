@@ -30,3 +30,6 @@ iaas_specific:
     cloud_properties:
       type: pd-standard
 
+  ntp_servers:
+    - 169.254.169.254
+
