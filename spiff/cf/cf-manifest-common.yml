@@ -5,3 +5,6 @@ director_uuid: (( merge || "BOSH_UUID" ))
 
 releases:
 - {name: cf, version: 215}
+
+networks: (( merge ))
+

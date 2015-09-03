@@ -4,3 +4,5 @@ name: (( merge ))
 director_uuid: (( merge ))
 
 releases: (( merge ))
+
+networks: (( merge ))
