@@ -1,0 +1,15 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: clock_global
+    templates:
+      - name: cloud_controller_clock
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: outbound
+        default: [dns, gateway]
+    properties:
+      ccdb: ccdb
+      networks:
+        apps: outbound

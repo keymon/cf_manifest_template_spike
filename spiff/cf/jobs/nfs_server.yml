@@ -1,0 +1,13 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: nfs_server
+    templates:
+      - name: debian_nfs_server
+    instances: 1
+    resource_pool: common
+    persistent_disk: 65535
+    networks:
+      - name: default
+        default: [dns, gateway]
+

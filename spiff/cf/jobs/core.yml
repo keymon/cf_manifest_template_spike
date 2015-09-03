@@ -1,0 +1,21 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: core
+    templates:
+      - name: nats
+      - name: nats_stream_forwarder
+      - name: etcd
+      - name: etcd_metrics_server
+      - name: hm9000
+      - name: uaa
+      - name: login
+      - name: metron_agent
+    instances: 1
+    resource_pool: common
+    persistent_disk_pool: core
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+

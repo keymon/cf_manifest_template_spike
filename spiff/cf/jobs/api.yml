@@ -1,0 +1,35 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: api
+    templates:
+      - name: gorouter
+      - name: routing-api
+      - name: cloud_controller_ng
+      - name: cloud_controller_clock
+      - name: cloud_controller_worker
+      - name: consul_agent
+      - name: doppler
+      - name: loggregator_trafficcontroller
+      - name: syslog_drain_binder
+      - name: metron_agent
+      - name: nfs_mounter
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: runner
+    templates:
+      - name: dea_next
+      - name: dea_logging_agent
+      - name: metron_agent
+    instances: 3
+    resource_pool: large
+    networks:
+      - name: default
+        default: [dns, gateway]
+    update:
+      max_in_flight: 1
+

@@ -1,0 +1,15 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: router
+    templates:
+      - name: gorouter
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: inbound
+        default: [dns, gateway]
+    properties:
+      networks:
+        apps: inbound
+

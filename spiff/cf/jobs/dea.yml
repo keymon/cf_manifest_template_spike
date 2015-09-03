@@ -1,0 +1,16 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: dea
+    templates:
+      - name: dea_logging_agent
+      - name: dea_next
+    instances: 3
+    resource_pool: large
+    networks:
+      - name: outbound
+        default: [dns, gateway]
+    properties:
+      networks:
+        apps: outbound
+

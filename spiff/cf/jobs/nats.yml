@@ -1,0 +1,12 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: nats
+    templates:
+      - name: nats
+      - name: nats_stream_forwarder
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]

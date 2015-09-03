@@ -1,0 +1,15 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: trafficcontroller
+    templates:
+      - name: loggregator_trafficcontroller
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: outbound
+        default: [dns, gateway]
+    properties:
+      networks:
+        apps: outbound
+

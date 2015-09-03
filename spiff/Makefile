@@ -38,6 +38,7 @@ cf_spiff_gce: director_uuid terraform_outputs
 	spiff merge \
 		cf-manifest-main.yml \
 		cf-manifest-common.yml \
+		jobs/*.yml \
 		cf-manifest-gce.yml \
 		terraform-outputs-gce.yml \
 		secrets.yml \

@@ -1,0 +1,13 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: etcd
+    templates:
+      - name: etcd
+    instances: 1
+    resource_pool: common
+    persistent_disk: 10024
+    networks:
+      - name: default
+        default: [dns, gateway]
+

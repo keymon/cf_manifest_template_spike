@@ -1,0 +1,17 @@
+---
+jobs:
+  - <<: (( merge )) # Pull other jobs from previous stubs
+  - name: haproxy
+    templates:
+      - name: haproxy
+      - name: consul_agent
+      - name: metron_agent
+    instances: 1
+    resource_pool: large
+    networks:
+      - name: default
+        default: [dns, gateway]
+      - name: static
+        static_ips:
+          - 104.155.70.65
+
