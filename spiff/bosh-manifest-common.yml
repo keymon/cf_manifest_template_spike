@@ -104,7 +104,7 @@ jobs:
       hm:
         http:
           user: hm
-          password: hm
+          password: (( secrets.passwords.bosh.hm ))
         director_account:
           user: admin
           password: (( secrets.passwords.bosh.director )) # not sure if it must be the same account than director
