@@ -2,7 +2,8 @@
 name: bosh
 
 iaas_specific: (( merge ))
-terraform_outputs: ((merge))
+terraform_outputs: (( merge ))
+secrets: (( merge ))
 
 releases:
   - (( iaas_specific.bosh.cpi_release ))
@@ -57,24 +58,24 @@ jobs:
           - gateway
         static_ips: (( terraform_outputs.bosh.private_static_ips ))
       - name: public
-        static_ips:  (( terraform_outputs.bosh.public_static_ips ))
+        static_ips: (( terraform_outputs.bosh.public_static_ips ))
 
     properties:
       nats:
         address: 127.0.0.1
         user: nats
-        password: nats
+        password: (( secrets.passwords.bosh.nats ))
 
       redis:
         listen_address: 127.0.0.1
         address: 127.0.0.1
-        password: redis
+        password: (( secrets.passwords.bosh.redis ))
 
       postgres: &db
         adapter: postgres
         host: 127.0.0.1
         user: postgres
-        password: postgres
+        password: (( secrets.passwords.bosh.postgres ))
         database: bosh
 
       dns:
@@ -88,10 +89,10 @@ jobs:
         provider: dav
         director:
           user: director
-          password: director
+          password: (( secrets.passwords.bosh.director ))
         agent:
           user: agent
-          password: agent
+          password: (( secrets.passwords.bosh.agent ))
 
       director:
         address: 127.0.0.1
@@ -105,11 +106,10 @@ jobs:
           password: hm
         director_account:
           user: admin
-          password: admin123
+          password: (( secrets.passwords.bosh.director )) # not sure if it must be the same account than director
         resurrector_enabled: true
 
-      ntp: &ntp
-        - 169.254.169.254
+      ntp: &ntp (( iaas_specific.ntp_servers ))
 
       google: &google_properties
         project: ${gce_project_id}
