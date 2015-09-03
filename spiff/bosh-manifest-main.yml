@@ -2,6 +2,8 @@
 # Main manifest file. I just merges the latest necessary elements
 #
 ---
+name: (( merge ))
+
 releases: (( merge ))
 
 networks: (( merge ))
