@@ -8,3 +8,4 @@ releases:
 
 networks: (( merge ))
 
+resource_pools: (( merge ))

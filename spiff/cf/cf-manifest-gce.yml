@@ -1,2 +1,45 @@
 ---
+terraform_outputs: (( merge ))
+
 networks:
+  - name: default
+    type: dynamic
+    cloud_properties:
+      network_name: (( terraform_outputs.gce.network_name ))
+      ephemeral_external_ip: true
+      tags:
+        - bosh
+        - cfmichael-update-me
+  - name: static
+    type: vip
+
+resource_pools:
+  - name: common
+    network: default
+    stemcell:
+      name: bosh-google-kvm-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      machine_type: n1-standard-4
+      root_disk_size_gb: 40
+      root_disk_type: pd-standard
+  - name: large
+    network: default
+    stemcell:
+      name: bosh-google-kvm-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      machine_type:  n1-highmem-8
+      root_disk_size_gb: 40
+      root_disk_type: pd-standard
+
+disk_pools:
+  - name: data
+    disk_size: 40_960
+    cloud_properties:
+      type: pd-ssd
+
+  - name: core
+    disk_size: 10_024
+    cloud_properties:
+      type: pd-ssd
