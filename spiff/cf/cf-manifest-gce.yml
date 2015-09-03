@@ -43,3 +43,81 @@ disk_pools:
     disk_size: 10_024
     cloud_properties:
       type: pd-ssd
+
+jobs:
+  - name: haproxy
+    templates:
+      - name: haproxy
+      - name: consul_agent
+      - name: metron_agent
+    instances: 1
+    resource_pool: large
+    networks:
+      - name: default
+        default: [dns, gateway]
+      - name: static
+        static_ips:
+          - 104.155.70.65
+
+  - name: data
+    templates:
+      - name: debian_nfs_server
+      - name: postgres
+      - name: metron_agent
+    instances: 1
+    resource_pool: common
+    persistent_disk_pool: data
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: core
+    templates:
+      - name: nats
+      - name: nats_stream_forwarder
+      - name: etcd
+      - name: etcd_metrics_server
+      - name: hm9000
+      - name: uaa
+      - name: login
+      - name: metron_agent
+    instances: 1
+    resource_pool: common
+    persistent_disk_pool: core
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: api
+    templates:
+      - name: gorouter
+      - name: routing-api
+      - name: cloud_controller_ng
+      - name: cloud_controller_clock
+      - name: cloud_controller_worker
+      - name: consul_agent
+      - name: doppler
+      - name: loggregator_trafficcontroller
+      - name: syslog_drain_binder
+      - name: metron_agent
+      - name: nfs_mounter
+    instances: 1
+    resource_pool: common
+    networks:
+      - name: default
+        default: [dns, gateway]
+
+  - name: runner
+    templates:
+      - name: dea_next
+      - name: dea_logging_agent
+      - name: metron_agent
+    instances: 3
+    resource_pool: large
+    networks:
+      - name: default
+        default: [dns, gateway]
+    update:
+      max_in_flight: 1
+
+properties: {}

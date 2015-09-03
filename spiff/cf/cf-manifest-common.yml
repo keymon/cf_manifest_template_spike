@@ -9,3 +9,7 @@ releases:
 networks: (( merge ))
 
 resource_pools: (( merge ))
+
+jobs: (( merge ))
+
+properties: (( merge ))
