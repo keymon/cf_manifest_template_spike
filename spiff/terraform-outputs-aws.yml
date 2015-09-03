@@ -4,4 +4,8 @@ terraform_outputs:
     microbosh_subnet_name: ${aws_subnet_id}
     microbosh_security_groups:
       - ${bosh_security_group}
-
+  bosh:
+    private_static_ips:
+    - ${bosh_private_ip}
+    public_static_ips:
+    - ${bosh_public_ip}

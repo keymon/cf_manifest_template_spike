@@ -2,6 +2,7 @@
 name: bosh
 
 iaas_specific: (( merge ))
+terraform_outputs: ((merge))
 
 releases:
   - (( iaas_specific.bosh.cpi_release ))
@@ -46,7 +47,7 @@ jobs:
       - name: registry
         release: bosh-google-cpi
 
-    resource_pool: vms
+    resource_pool: bosh_vms
     persistent_disk_pool: disks
 
     networks:
@@ -54,9 +55,9 @@ jobs:
         default:
           - dns
           - gateway
+        static_ips: (( terraform_outputs.bosh.private_static_ips ))
       - name: public
-        static_ips:
-          - ${gce_static_ip}
+        static_ips:  (( terraform_outputs.bosh.public_static_ips ))
 
     properties:
       nats:

@@ -2,3 +2,8 @@
 terraform_outputs:
   gce:
     microbosh_network_name: ${gce_microbosh_net}
+  bosh:
+    private_static_ips:
+    - ${bosh_private_ip}
+    public_static_ips:
+    - ${bosh_public_ip}

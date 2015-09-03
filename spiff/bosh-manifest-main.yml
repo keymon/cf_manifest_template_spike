@@ -9,3 +9,5 @@ networks: (( merge ))
 resource_pools: (( merge ))
 
 disk_pools: (( merge ))
+
+jobs: (( merge ))
