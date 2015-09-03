@@ -79,13 +79,13 @@ jobs:
         database: bosh
 
       dns:
-        address: ${gce_static_ip}
+        address: (( terraform_outputs.bosh.microbosh_endpoint_ip ))
         domain_name: microbosh
         db: *db
         recursor: 8.8.8.8
 
       blobstore:
-        address: ${gce_static_ip}
+        address: (( terraform_outputs.bosh.microbosh_endpoint_ip ))
         provider: dav
         director:
           user: director
@@ -96,9 +96,10 @@ jobs:
 
       director:
         address: 127.0.0.1
-        name: micro-google
+        name: microbosh
         db: *db
         cpi_job: cpi
+        max_threads: 10
 
       hm:
         http:

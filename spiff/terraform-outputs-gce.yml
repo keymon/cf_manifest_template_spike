@@ -7,3 +7,4 @@ terraform_outputs:
     - ${bosh_private_ip}
     public_static_ips:
     - ${bosh_public_ip}
+    microbosh_endpoint_ip: ${bosh_public_ip}
