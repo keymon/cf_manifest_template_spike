@@ -134,17 +134,17 @@ cloud_provider:
     release: bosh-google-cpi
 
   ssh_tunnel:
-    host: ${gce_static_ip}
+    host: (( terraform_outputs.bosh.bastion_public_ip ))
     port: 22
-    user: ${gce_ssh_user}
-    private_key: ${gce_ssh_key_path}
+    user: (( terraform_outputs.bosh.bastion_ssh_user ))
+    private_key: "~/.ssh/id_rsa"
 
-  mbus: https://mbus:mbus@${gce_static_ip}:6868
+  mbus: (( "https://mbus:" secrets.passwords.bosh.bosh_init_mbus  "@" terraform_outputs.bosh.private_static_ips.[0] ":6868" ))
 
   properties:
-    google: *google_properties
+    <<: (( merge ))
     agent:
-      mbus: https://mbus:mbus@0.0.0.0:6868
+      mbus: (( "https://mbus:" secrets.passwords.bosh.bosh_init_mbus "@0.0.0.0:6868" ))
       ntp: *ntp
       blobstore:
         provider: local
