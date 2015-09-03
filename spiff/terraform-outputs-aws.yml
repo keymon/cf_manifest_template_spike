@@ -15,4 +15,3 @@ terraform_outputs:
     microbosh_endpoint_ip: ${bosh_private_ip}
     bastion_public_ip: ${bastion_public_ip}
     bastion_ssh_user: ${bastion_ssh_user}
-
