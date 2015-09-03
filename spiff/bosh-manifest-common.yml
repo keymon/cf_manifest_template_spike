@@ -119,11 +119,11 @@ jobs:
         default_zone: ${gce_default_zone}
 
       agent:
-        mbus: nats://nats:nats@${gce_static_ip}:4222
+        mbus: (( "nats://nats:" secrets.passwords.bosh.nats "@" terraform_outputs.bosh.microbosh_endpoint_ip ":4222" ))
         ntp: *ntp
         blobstore:
            options:
-             endpoint: http://${gce_static_ip}:25250
+             endpoint: (( "http://" terraform_outputs.bosh.microbosh_endpoint_ip ":25250" ))
              user: agent
              password: agent
 
