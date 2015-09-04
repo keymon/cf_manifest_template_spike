@@ -5,7 +5,11 @@ require 'erb'
 
 files=ARGV
 
+# Keeps the complete final YAML file
 FINAL_YAML={}
+
+
+# Allows search for existing values in the YAML structure
 def search_yaml_values(key)
     def recursive_search(hash, keys)
         if keys == []
@@ -36,15 +40,20 @@ def perform_yaml_interpolation(structure, interpolation_binding)
         structure
     end
 end
+
+# Get the current binding
 context_binding = binding()
 
 files.each do |f|
     if f.downcase =~ /.*\.yml$/
+        # A simple yaml, just gets merged
         FINAL_YAML.deep_merge!(YAML.load(File.read(f)))
     elsif f.downcase =~ /.*\.yml\.erb$/
+        # a erb, we compile it and merge it
         template = ERB.new(File.read(f))
         FINAL_YAML.deep_merge!(YAML.load(template.result(context_binding)))
     elsif f.downcase =~ /.*.rb$/
+        # a ruby file, just evalueate it
         eval(File.read(f), context_binding)
     else
         raise "Unknown file type #{f}"
