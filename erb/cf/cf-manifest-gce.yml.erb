@@ -3,7 +3,7 @@ networks:
   - name: default
     type: dynamic
     cloud_properties:
-      network_name: <%= yaml_values.terraform_outputs.gce.network_name %>
+      network_name: <%= search_yaml_values("terraform_outputs.gce.network_name") %>
       ephemeral_external_ip: true
       tags:
         - bosh

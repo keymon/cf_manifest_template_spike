@@ -2,11 +2,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     deep_merge (1.0.1)
-    dot_hash (0.5.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   deep_merge
-  dot_hash

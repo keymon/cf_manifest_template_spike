@@ -9,7 +9,7 @@ networks:
     reserved: ["10.0.0.2 - 10.0.0.9"]
     static: ["10.0.0.10 - 10.0.0.100"]
     cloud_properties:
-      subnet: <%= yaml_values.terraform_outputs.aws.microbosh_subnet_name %>
+      subnet: <%= search_yaml_values("terraform_outputs.aws.microbosh_subnet_name") %>
 
 resource_pools:
 - name: small_nats_z1

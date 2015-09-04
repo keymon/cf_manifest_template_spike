@@ -13,9 +13,9 @@ jobs:
 properties:
   nats:
     user: nats
-    password: <%= yaml_values.secrets.passwords.cf.nats %>
-    address: <%= yaml_values.job_address.nats.address %>
+    password: <%= search_yaml_values("secrets.passwords.cf.nats") %>
+    address: <%= search_yaml_values("job_address.nats.address") %>
     port: 4222
     machines:
-      - <%= yaml_values.job_address.nats.address %>
+      - <%= search_yaml_values("job_address.nats.address") %>
 

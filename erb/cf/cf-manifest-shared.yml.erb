@@ -3,10 +3,10 @@
 #
 ---
 shared_properties:
-  deployment_name: <%= "#{yaml_values.terraform_outputs.env}-cf" %>
+  deployment_name: <%= "#{search_yaml_values("terraform_outputs.env")}-cf" %>
 
 job_address:
   nats:
-    address: <%= "0.nats.default.#{yaml_values.terraform_outputs.env}.microbosh" %>
+    address: <%= "0.nats.default.#{search_yaml_values("terraform_outputs.env")}.microbosh" %>
   syslog_aggregator:
-    address: <%= "0.syslog-aggregator.#{yaml_values.terraform_outputs.env}.microbosh" %>
+    address: <%= "0.syslog-aggregator.#{search_yaml_values("terraform_outputs.env")}.microbosh" %>

@@ -1,14 +1,20 @@
 #!/usr/bin/ruby
 require 'yaml'
 require 'deep_merge' # gem install deep_merge
-require "erb" # gem install erb
-require "dot_hash"
+require 'erb'
 
 files=ARGV
 
 FINAL_YAML={}
-def yaml_values()
-    FINAL_YAML.to_properties # use dot_hash
+def search_yaml_values(key)
+    def recursive_search(hash, keys)
+        if keys == []
+            hash
+        else
+            recursive_search(hash[keys[0]], keys[1..-1])
+        end
+    end
+    recursive_search(FINAL_YAML, key.split('.'))
 end
 
 context_binding = binding()
