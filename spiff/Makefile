@@ -1,12 +1,8 @@
 all: bosh_spiff cf_spiff
 
-terraform_outputs:
-	touch terraform-outputs-aws.yml terraform-outputs-gce.yml
-	terraform apply -var env=myenv
-
 bosh_spiff: bosh_spiff_gce bosh_spiff_aws
 
-bosh_spiff_gce: terraform_outputs
+bosh_spiff_gce:
 	cd bosh && \
 	spiff merge \
 		bosh-manifest-main.yml \
@@ -16,7 +12,7 @@ bosh_spiff_gce: terraform_outputs
 		secrets.yml \
 		> generated.manifest-gce.yml
 
-bosh_spiff_aws: terraform_outputs
+bosh_spiff_aws:
 	cd bosh && \
 	spiff merge \
 		bosh-manifest-main.yml \
@@ -33,7 +29,7 @@ director_uuid:
 	cd cf && \
 	echo "---\ndirector_uuid: abcd-abcd-abcd-abcd-abcd-abcd" > director_uuid.yml
 
-cf_spiff_gce: director_uuid terraform_outputs
+cf_spiff_gce: director_uuid
 	cd cf && \
 	spiff merge \
 		cf-manifest-main.yml \
@@ -46,7 +42,7 @@ cf_spiff_gce: director_uuid terraform_outputs
 		director_uuid.yml \
 		> generated.manifest-gce.yml
 
-cf_spiff_aws: director_uuid terraform_outputs
+cf_spiff_aws: director_uuid
 	cd cf && \
 	spiff merge \
 		cf-manifest-main.yml \
