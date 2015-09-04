@@ -128,6 +128,10 @@ Cons:
    >
    > Spiff is great when it's used for really simple things or internally-managed plumbing, but when you get into more complicated things like cf-release, with its many use-cases, it explodes in complexity. The potential for "wrong answers" from spiff increases, which is scary for deployment manifests.
 
+### About the future of SPIFF
+
+it is explained in this question in cf-dev: https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/thread/IFSYKSXRVYG6QPXM36ZZSRVBUKYQKNVZ/
+
 ### Proof of concept
 
 In the folder `spiff/` we include two examples: `cf` and `bosh`.
