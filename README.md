@@ -107,7 +107,8 @@ less erb/cf/generated.manifest-aws.yml
 It is the tool used by cloudfoundry, but it is still in the incubator.
 
 References:
- * [Blog describing how to work with spiff](https://blog.starkandwayne.com/2015/03/31/decomposing-bosh-manifests-with-spiff/)
+ * RECOMMENDED: [Blog describing how to work with spiff](https://blog.starkandwayne.com/2015/03/31/decomposing-bosh-manifests-with-spiff/)
+ * [Offitial examples](https://github.com/cloudfoundry-community/using-spiff-examples)
  * [Spiff repository](https://github.com/cloudfoundry-incubator/spiff)
  * [Templates of offitial CF release using spiff](https://github.com/cloudfoundry/cf-release/tree/master/templates), and [script which calls them](https://github.com/cloudfoundry/cf-release/blob/master/generate_deployment_manifest)
 
