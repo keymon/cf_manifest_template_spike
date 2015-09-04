@@ -7,9 +7,9 @@ terraform_outputs:
 	touch terraform-outputs-aws.yml terraform-outputs-gce.yml && \
 	terraform apply -var env=myenv
 
-spiff:
+spiff: terraform_outputs
 	make -C spiff all
 
-erb:
+erb: terraform_outputs
 	make -C erb all
 
