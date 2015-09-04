@@ -92,7 +92,8 @@ Features:
  * Search other YAML values:
     * A function called `search_yaml_values` allows search any yaml value in the processed files.
  * Does not keep the original structure, since the yaml is parsed.
-
+ * You can also use ruby string interpolation, which will be processed with the final assembled yaml.
+   This even allows copy an exising subtree of the yaml in other node.
 
 To test it, check `erb/cf/` folder. You can run it with:
 
