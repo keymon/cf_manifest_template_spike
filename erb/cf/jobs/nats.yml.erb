@@ -14,8 +14,8 @@ properties:
   nats:
     user: nats
     password: <%= yaml_values.secrets.passwords.cf.nats %>
-    address: <%= job_address[:nats][:address] %>
+    address: <%= yaml_values.job_address.nats.address %>
     port: 4222
     machines:
-      - <%= job_address[:nats][:address] %>
+      - <%= yaml_values.job_address.nats.address %>
 

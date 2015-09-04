@@ -1,0 +1,29 @@
+---
+networks:
+- name: private
+  type: manual
+  subnets:
+  - range: 10.0.0.0/24
+    gateway: 10.0.0.1
+    dns: [10.0.0.2]
+    reserved: ["10.0.0.2 - 10.0.0.9"]
+    static: ["10.0.0.10 - 10.0.0.100"]
+    cloud_properties:
+      subnet: <%= yaml_values.terraform_outputs.aws.microbosh_subnet_name %>
+
+resource_pools:
+- name: small_nats_z1
+  network: private
+  stemcell:
+    name: bosh-aws-xen-hvm-ubuntu-trusty-go_agent
+    version: 3063
+  cloud_properties:
+    instance_type: t2.small
+    availability_zone: eu-west-1a
+    ephemeral_disk: {size: 25_000, type: gp2}
+
+disk_pools: {}
+
+jobs: {}
+
+properties: {}

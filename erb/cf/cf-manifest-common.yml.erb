@@ -1,0 +1,20 @@
+---
+name: <%= yaml_values.shared_properties.deployment_name %>
+
+director_uuid: <%= retrieve_bosh_uuid() %>
+
+releases:
+- {name: cf, version: 215}
+
+properties:
+  domain: <%= "#{yaml_values.terraform_outputs.env}-cf.paas.alphagov.co.uk" %>
+  system_domain: <%= "#{yaml_values.terraform_outputs.env}-cf.paas.alphagov.co.uk" %>
+  system_domain_organization: 'admin'
+  app_domains:
+    - <%= "#{yaml_values.terraform_outputs.env}-cf.paas.alphagov.co.uk" %>
+
+  haproxy: {}
+
+  networks:
+    apps: default
+

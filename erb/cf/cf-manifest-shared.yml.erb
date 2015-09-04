@@ -1,0 +1,12 @@
+#
+# Variables used by other stubs that are shared by all the platforms
+#
+---
+shared_properties:
+  deployment_name: <%= "#{yaml_values.terraform_outputs.env}-cf" %>
+
+job_address:
+  nats:
+    address: <%= "0.nats.default.#{yaml_values.terraform_outputs.env}.microbosh" %>
+  syslog_aggregator:
+    address: <%= "0.syslog-aggregator.#{yaml_values.terraform_outputs.env}.microbosh" %>
