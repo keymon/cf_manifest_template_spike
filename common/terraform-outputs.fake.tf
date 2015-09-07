@@ -15,10 +15,10 @@ resource "template_file" "terraform_outputs_aws_yml" {
         aws_region              = "${var.zones.zone0}"
         default_security_group  = "${var.env}-default-sg"
     }
+}
 
-    provisioner "local-exec" {
-      command = "echo '${template_file.terraform_outputs_aws_yml.rendered}' > terraform-outputs-aws.yml"
-    }
+output "terraform_outputs_aws_yml" {
+       value = "${template_file.terraform_outputs_aws_yml.rendered}"
 }
 
 resource "template_file" "terraform_outputs_gce_yml" {
@@ -33,9 +33,9 @@ resource "template_file" "terraform_outputs_gce_yml" {
         bosh_private_ip         = "10.0.0.6"
         bosh_public_ip          = "195.11.22.33"
     }
+}
 
-    provisioner "local-exec" {
-      command = "echo '${template_file.terraform_outputs_gce_yml.rendered}' > terraform-outputs-gce.yml"
-    }
+output "terraform_outputs_gce_yml" {
+       value = "${template_file.terraform_outputs_gce_yml.rendered}"
 }
 

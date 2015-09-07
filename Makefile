@@ -4,8 +4,10 @@ all: terraform_outputs spiff erb
 
 terraform_outputs:
 	cd common && \
-	touch terraform-outputs-aws.yml terraform-outputs-gce.yml && \
-	terraform apply -var env=myenv
+	terraform apply -var env=myenvi && \
+	terraform output terraform_outputs_aws_yml > terraform-outputs-aws.yml && \
+	terraform output terraform_outputs_gce_yml > terraform-outputs-gce.yml
+
 
 spiff: terraform_outputs
 	make -C spiff all
